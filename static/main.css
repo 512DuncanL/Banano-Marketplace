@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2&family=Heebo&display=block');
+
+:root {
+    --yellow: #fbdd11;
+    --darkyellow: #c7b00d;
+    --gray: #2a2a2e;
+    --darkgray: #212124;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    background-color: var(--darkgray);
+    color: var(--yellow);
+    font-family: "Exo 2", sans-serif;
+    font-size: 20px;
+}
+
+nav {
+    color: var(--darkgray);
+    background-color: var(--yellow);
+    display: block;
+    height: 48px;
+    width: 100%;
+}
+
+nav * {
+    float: right;
+    padding: 0 8px;
+    margin: 0;
+    line-height: 48px;
+    text-decoration: none;
+    color: var(--gray);
+}
+
+nav > *:not(:first-child):not(p):hover {
+    background-color: var(--darkyellow);
+    cursor: pointer;
+}
+
+nav h3 {
+    float: left;
+}
+
+h1 {
+    font-size: 40px;
+    margin: 30px 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    min-height: calc(100% - 48px);
+    overflow: auto;
+}
+
+form {
+    width: 540px;
+    background-color: var(--gray);
+    border-radius: 8px;
+    text-align: center;
+    padding: 16px 0;
+    margin: 32px 64px;
+}
+
+.flash > p {
+    background-color: var(--yellow);
+    color: var(--darkgray);
+    border-radius: 4px;
+    padding: 4px;
+    text-align: center;
+    margin: 6px auto;
+}
+
+form a {
+    color: var(--yellow);
+}
+
+form section {
+    text-align: left;
+    margin: auto;
+    width: 80%;
+    margin-bottom: 16px;
+}
+
+form section p {
+    margin-bottom: 8px;
+    word-wrap: break-word;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    width: 100%;
+    height: 24px;
+    border: none;
+    border-radius: 2px;
+    padding: 4px;
+    font-size: inherit;
+    font-family: inherit;
+    margin-bottom: 14px;
+}
+
+form input.amount {
+    width: calc(100% - 60px);
+}
+
+form input[type="number"] {
+    width: 250px;
+}
+
+form button {
+    font-family: inherit;
+    font-size: inherit;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: none;
+    background-color: var(--yellow);
+    color: var(--darkgray);
+    margin-bottom: 16px;
+    cursor: pointer;
+}
+
+textarea {
+    width: 100%;
+    height: 200px;
+    resize: none;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: inherit;
+    padding: 4px;
+    border: none;
+}
+
+svg {
+    padding-left: 0;
+}
+
+header {
+	text-align: center;
+	overflow: hidden;
+}
+
+header input[type="text"] {
+	width: 50%;
+    height: 24px;
+    border: none;
+    border-radius: 2px;
+    padding: 4px;
+    font-size: inherit;
+    font-family: inherit;
+    background-color: white;
+    vertical-align: top;
+}
+
+header > section > * {
+	display: inline-block;
+	margin: 0 4px;
+	padding: 0;
+	width: auto;
+	border: none;
+	text-decoration: none;
+	background-color: var(--yellow);
+	color: var(--darkgray);
+	overflow: hidden;
+	border-radius: 4px;
+}
+
+header a {
+    font-size: 18px;
+    line-height: 32px;
+    border-radius: 4px;
+    padding: 0 4px;
+}
+
+header button {
+	font-size: 18px;
+	margin: 0;
+	padding: 3px 4px;
+	border: 2px solid var(--yellow);
+	display: inline;
+	border-radius: 4px;
+	color: var(--yellow);
+	background-color: var(--darkgray);
+}
+
+.listing {
+	margin: 24px;
+	width: 300px;
+	padding: 16px;
+	background-color: var(--gray);
+	text-decoration: none;
+	display: block;
+	color: var(--yellow);
+	border-radius: 8px;
+}
+
+.listing:hover {
+	filter: brightness(125%);
+}
+
+.user-menu {
+    position: relative;
+}
+
+.user-menu > a {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    padding: 0;
+    right: 0;
+    top: 48px;
+    width: 100%;
+    background-color: var(--darkyellow);
+    text-align: center;
+    z-index: 100;
+}
+
+.dropdown a:hover {
+    background-color: var(--yellow);
+}
+
+.dropdown a {
+    line-height: initial;
+    padding: 8px 16px;
+    width: calc(100% - 32px);
+    display: block;
+    color: var(--gray);
+    text-decoration: none;
+}
+
+.user-menu:hover .dropdown {
+    display: block;
+}
+
+.button-container {
+	margin: 0;
+	padding: 0;
+	width: fit-content;
+	display: inline-block;
+}
+
+#noResults {
+	display: none;
+}

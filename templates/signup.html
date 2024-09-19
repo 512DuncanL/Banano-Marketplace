@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+    </head>
+
+    <body>
+        {% include 'nav.html' %}
+        <main>
+            <form action="/signup" method="post">
+                <h1>Sign Up</h1>
+		<section class="flash">
+		{% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+		</section>
+                <section>
+                    <p>Email</p>
+                    <input type="text" name="email">
+                    <p>Username</p>
+                    <input type="text" name="username">
+	            <p>Banano Address</p>
+                    <input type="text" name="address">
+                    <p>Password</p>
+                    <input type="password" name="password">
+                    <p>Repeat Password</p>
+		    <input type="password" name="repeat">
+                </section>
+                <button>Sign Up</button>
+		<p>Already have an account? <a href="/signin">Sign in</a></p>
+            </form>
+        </main>
+    </body>
+</html>

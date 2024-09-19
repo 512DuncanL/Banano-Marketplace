@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" onload="resize()"/>
+    </head>
+
+    <body>
+		{% include 'nav.html' %}
+		<header>
+			<h1>Listings</h1>
+			<section>
+				<input type="text" id="searchbar" onkeyup="search()" placeholder="Search...">
+				{% if current_user.is_authenticated %}
+					<a href="/my">My Listings</a>
+				    <a href="/create">Create Listing</a>
+				{% endif %}
+				<form action="/" method="post">
+					<button name="filter" value="Buy" style="{{ 'color: var(--darkgray); background-color: var(--yellow)' if filter == 'Buy'}}">Buy Offers</button>
+				</form>
+				<form action="/" method="post">
+					<button name="filter" value="Sell" style="{{ 'color: var(--darkgray); background-color: var(--yellow)' if filter == 'Sell'}}">Sell Offers</button>
+				</form>
+			</section>
+			<section class="flash">
+			{% with messages = get_flashed_messages() %}
+				{% if messages %}
+					{% for message in messages %}
+			        	<p>{{ message }}</p>
+			        {% endfor %}
+			    {% endif %}
+			{% endwith %}
+			</section>
+	    </header>
+        <main>
+			{% for listing in listings %}
+			<a href="/listing/{{ listing['id'] }}" class="listing">
+				<h3>{{ listing['title'] }}</h3>
+				<p>Price: {{ listing['price'] }} BAN</p>
+				<p>Merchant: @{{ listing['merchant'] }}</p>
+			</a>
+			{% endfor %}
+			<p id="noResults">Sorry, we couldn't find any results</p>
+        </main>
+        <script src="{{ url_for('static', filename='search.js') }}"></script>
+    </body>
+</html>

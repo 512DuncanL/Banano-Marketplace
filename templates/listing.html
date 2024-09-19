@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+    </head>
+
+    <body>
+        {% include 'nav.html' %}
+        <main>
+            <section>
+		        <section class="flash">
+				{% with messages = get_flashed_messages() %}
+					{% if messages %}
+						{% for message in messages %}
+					    	<p>{{ message }}</p>
+					    {% endfor %}
+					{% endif %}
+				{% endwith %}
+				</section>
+            	<h1>Title: {{ listing.title }}</h1>
+            	<p>Listing Type: {{ listing.listing_type }}</p>
+            	<p>Description: {{ listing.description }}</p>
+            	<p>Merchant: @{{ listing.merchant }}</p>
+            	<p>Price: {{ listing.price }} BAN</p>
+            	<p>Contact: {{ listing.contact }}</p>
+            	<p>Status: {{ listing.status }}</p>
+            	{% if (current_user.username == listing.merchant and listing.status == "Created") or (current_user.username == "Admin") %}
+            	<form class="button-container" action="/delete" method="post">
+            		<input type="hidden" name="listing" value="{{ listing.id }}">
+            		<button>Delete Listing</button>
+            	</form>
+            	{% elif current_user.is_authenticated and listing.status == "Created" %}
+            	<form class="button-container" action="/accept" method="post">
+            		<input type="hidden" name="listing" value="{{ listing.id }}">
+            		<button>Accept Listing</button>
+            	</form>
+            	{% endif %}
+            	{% if listing.status == "Accepted" %}
+	        		{% if (current_user.username == listing.merchant and listing.listing_type == "Buy") or (current_user.username == listing.client and listing.listing_type == "Sell") %}
+	        			<form class="button-container" action="/complete_listing" method="post">
+							<input type="hidden" name="listing" value="{{ listing.id }}">
+							<button>Complete Listing</button>
+						</form>
+						<p>Note: Only confirm that the trade has been completed after you have received your goods / payment</p>
+	        		{% endif %}
+	        		{% if current_user.username == listing.client %}
+	        			<p>Send goods to receive payment</p>
+	        		{% endif %}
+            	{% endif %}
+            </section>
+        </main>
+    </body>
+</html>

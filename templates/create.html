@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+    </head>
+
+    <body>
+        {% include 'nav.html' %}
+        <main>
+            <form action="/create" method="post">
+                <h1>Create Listing</h1>
+				<section class="flash">
+				{% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                            <p>{{ message }}</p>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+				</section>
+                <section>
+                    <p>Listing Type</p>
+                    <input id="buy" type="radio" name="listing_type" value="Buy">
+					<label for="buy">Buy</label>
+					<input id="sell" type="radio" name="listing_type" value="Sell">
+					<label for="sell">Sell</label>
+                    <p>Title</p>
+                    <input type="text" name="title">
+	            	<p>Description</p>
+                    <textarea name="description"></textarea>
+                    <p>Contact Details</p>
+                    <input type="text" name="contact">
+		    		<p>Price</p>
+                    <input type="text" class="amount" name="price">
+		    		<label>BAN</label>
+                </section>
+                <button>Create Listing</button>
+            </form>
+        </main>
+    </body>
+</html>

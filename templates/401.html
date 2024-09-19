@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+    </head>
+
+    <body>
+        {% include 'nav.html' %}
+        <main>
+			<section>
+		        <h1>401 Unauthorized</h1>
+				<p>Please log in to access this page</p>
+			</section>
+        </main>
+    </body>
+</html>

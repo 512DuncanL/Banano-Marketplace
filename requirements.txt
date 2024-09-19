@@ -1,0 +1,6 @@
+Flask
+Flask-Login
+pymysql
+argon2-cffi
+Flask-SQLAlchemy
+bananopie

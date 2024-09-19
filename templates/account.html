@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
+    </head>
+
+    <body>
+		{% include 'nav.html' %}
+        <main>
+			<form>
+				<h3>Account Details</h3>
+				<section>
+					<p>Email Address: {{ current_user.email }}</p>
+					<p>Banano Address: {{ current_user.address }}</p>
+					<p>Deposit Address: ban_1market35pqxcd94eiksfiuxrnrhhkg36ryd41uu9ec16djcghkpy6a8axcx</p>
+					<p>Contact Admin (Discord): 5dl</p>
+				</section>
+			</form>
+			<form action="/withdraw" method="post">
+				<h3>Withdraw</h3>
+				<section class="flash">
+				{% with messages = get_flashed_messages(category_filter=["withdraw"]) %}
+					{% if messages %}
+						{% for message in messages %}
+				        	<p>{{ message }}</p>
+				        {% endfor %}
+				    {% endif %}
+				{% endwith %}
+				</section>
+				<section>
+					<p>Amount: </p>
+					<input type="text" class="amount" name="amount">
+					<label> BAN</label>
+					<p style="font-size: 14px; margin-top: 0">Available Balance: {{  current_user.balance | float  }} BAN</p>
+				</section>
+				<button>Withdraw Now</button>
+			</form>
+			{% if current_user.username == "Admin" %}
+			<form action="/ban" method="post">
+				<h3>Ban Users</h3>
+				<section class="flash">
+				{% with messages = get_flashed_messages(category_filter=["ban"]) %}
+					{% if messages %}
+						{% for message in messages %}
+				        	<p>{{ message }}</p>
+				        {% endfor %}
+				    {% endif %}
+				{% endwith %}
+				</section>
+				<section>
+					<p>Username: </p>
+					<input type="text" name="username">
+					<p>Integer duration in seconds (enter "PERMANENT" for permanent ban or negative numbers to reduce the ban duration; to unban a permanently banned user enter any number): </p>
+					<input type="text" name="ban_time">
+					<p>Ban Reason: </p>
+					<input type="text" name="ban_reason">
+				</section>
+				<button>Ban User</button>
+			</form>
+			{% endif %}
+        </main>
+    </body>
+</html>
